@@ -1,8 +1,9 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import userRoutes from "./routes/user.route.js";
 dotenv.config();
- 
+
 const connectDB = async () => {
   try {
     const conn = await mongoose.connect(process.env.MONGO);
@@ -20,3 +21,5 @@ const app = express();
 app.listen(4000, () => {
   console.log(`Server running on http://localhost:4000/`);
 });
+
+app.use("/api/user", userRoutes);
